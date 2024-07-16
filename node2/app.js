@@ -45,6 +45,11 @@ app.get('/cust', (req,res)=>{
 app.get('/item', (req,res)=>{
     res.render('index',{'center':'item'});
 });
+
+// Detail 화면
+app.get('/detail', (req,res)=>{
+    res.render('index',{'center':'detail'});
+});
 app.listen(port,()=>{
     console.log(`server start port:${port}`)
 })
