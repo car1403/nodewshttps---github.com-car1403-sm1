@@ -33,6 +33,9 @@ app.get('/register', (req,res)=>{
 app.get('/map', (req,res)=>{
     res.render('index',{'center':'map'});
 });
+app.get('/map2', (req,res)=>{
+    res.render('index',{'center':'map2'});
+});
 // Chart 화면
 app.get('/chart', (req,res)=>{
     res.render('index',{'center':'chart'});
