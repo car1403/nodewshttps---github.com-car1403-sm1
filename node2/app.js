@@ -29,6 +29,22 @@ app.get('/login', (req,res)=>{
 app.get('/register', (req,res)=>{
     res.render('index',{'center':'register'});
 });
+// Map 화면
+app.get('/map', (req,res)=>{
+    res.render('index',{'center':'map'});
+});
+// Chart 화면
+app.get('/chart', (req,res)=>{
+    res.render('index',{'center':'chart'});
+});
+// Cust 화면
+app.get('/cust', (req,res)=>{
+    res.render('index',{'center':'cust'});
+});
+// Item 화면
+app.get('/item', (req,res)=>{
+    res.render('index',{'center':'item'});
+});
 app.listen(port,()=>{
     console.log(`server start port:${port}`)
 })
