@@ -21,7 +21,14 @@ app.use(express.static('public'));
 app.get('/', (req,res)=>{
     res.render('index');
 });
-
+// Login 화면
+app.get('/login', (req,res)=>{
+    res.render('index',{'center':'login'});
+});
+// Register 화면
+app.get('/register', (req,res)=>{
+    res.render('index',{'center':'register'});
+});
 app.listen(port,()=>{
     console.log(`server start port:${port}`)
 })
