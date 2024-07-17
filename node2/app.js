@@ -40,6 +40,9 @@ app.get('/map2', (req,res)=>{
 app.get('/chart', (req,res)=>{
     res.render('index',{'center':'chart'});
 });
+app.get('/chart2', (req,res)=>{
+    res.render('index',{'center':'chart2'});
+});
 // Cust 화면
 app.get('/cust', (req,res)=>{
     res.render('index',{'center':'cust'});

@@ -3,6 +3,18 @@
     width:100%;
     height: 400px;
   }
+  #container2{
+    width:100%;
+    height: 400px;
+  }
+  #container3{
+    width:100%;
+    height: 400px;
+  }
+  #container4{
+    width:100%;
+    height: 400px;
+  }
 </style>
 <script>
   function chart1(){
@@ -153,6 +165,32 @@
       <div class="col-sm-6">
         <h2>Chart2 Page</h2>
         <div id="container2"></div>
+        <div id="sliders">
+          <table>
+              <tr>
+                  <td><label for="alpha">Alpha Angle</label></td>
+                  <td><input id="alpha" type="range" min="0" max="45" value="15"/> <span id="alpha-value" class="value"></span></td>
+              </tr>
+              <tr>
+                  <td><label for="beta">Beta Angle</label></td>
+                  <td><input id="beta" type="range" min="-45" max="45" value="15"/> <span id="beta-value" class="value"></span></td>
+              </tr>
+              <tr>
+                  <td><label for="depth">Depth</label></td>
+                  <td><input id="depth" type="range" min="20" max="100" value="50"/> <span id="depth-value" class="value"></span></td>
+              </tr>
+          </table>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>Chart1 Page</h2>
+        <div id="container3"></div>
+      </div>
+      <div class="col-sm-6">
+        <h2>Chart2 Page</h2>
+        <div id="container4"></div>
       </div>
     </div>
 </div>
