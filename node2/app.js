@@ -16,6 +16,12 @@ app.set('view engine', 'html');
 app.use(bodyParser.urlencoded({extended:false})); //객체 들어감. 추가 2 
 app.use(express.static('public'));
 
+
+
+
+
+
+
 // Controller
 // 127.0.0.1/
 app.get('/', (req,res)=>{
@@ -43,10 +49,7 @@ app.get('/chart', (req,res)=>{
 app.get('/chart2', (req,res)=>{
     res.render('index',{'center':'chart2'});
 });
-// Cust 화면
-app.get('/cust', (req,res)=>{
-    res.render('index',{'center':'cust'});
-});
+
 // Item 화면
 app.get('/item', (req,res)=>{
     res.render('index',{'center':'item'});
@@ -56,6 +59,11 @@ app.get('/item', (req,res)=>{
 app.get('/detail', (req,res)=>{
     res.render('index',{'center':'detail'});
 });
+
+// Router 
+const cust = require('./routes/cust');
+app.use('/cust', cust);
+
 app.listen(port,()=>{
     console.log(`server start port:${port}`)
 })
