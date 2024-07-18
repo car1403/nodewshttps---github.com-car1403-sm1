@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,10 @@
 </head>
 <body>
     <h1>Login Page</h1>
-    <form action="/loginimpl" method="post">
+    <form action="/loginimpl" method="post" enctype="multipart/form-data">
         ID<input type="text" name="id"><br>
         PWD<input type="password" name="pwd"><br>
+        <input type="file" name="imgfile">
         <input type="submit" value="LOGIN">
     </form>
 </body>
