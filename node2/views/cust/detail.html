@@ -2,10 +2,26 @@
     <div class="row">
       <div class="col-sm-12">
         <h2>Cust Detail Page</h2>
-        <h3>{{custinfo.id}}</h3>
-        <h3>{{custinfo.pwd}}</h3>
-        <h3>{{custinfo.name}}</h3>
-        <h3>{{custinfo.acc}}</h3>
+        <form method="post" action="/cust/updateimpl">
+          <div class="form-group">
+            <label for="id">Id:</label>
+            <input type="text" value="{{custinfo.id}}" readonly class="form-control" id="id" name="id">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" value="{{custinfo.pwd}}" class="form-control" id="pwd"  name="pwd">
+          </div>
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" value="{{custinfo.name}}" class="form-control" id="name"  name="name">
+          </div>
+          <div class="form-group">
+            <label for="acc">Account:</label>
+            <input type="text" value="{{custinfo.acc}}" class="form-control" id="acc"  name="acc">
+          </div>
+          <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+        <a href="/cust/deleteimpl?id={{custinfo.id}}" class="btn btn-info" role="button">DELETE</a>
       </div>
     </div>
 </div>
