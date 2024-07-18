@@ -10,7 +10,12 @@ var db_sql = require('../db/db_sql');
 
 router
     .get("/",(req,res)=>{   // 127.0.0.1/cust/
-        res.render('index',{'center':'cust/list'});
+        conn = db_connect.getConnection();
+        conn.query(db_sql.cust_select, function (err, result, fields) {
+            console.log(result);
+            res.render('index', { center:'cust/list', datas:result });
+            db_connect.close(conn);
+        });
     })
     .get("/add",(req,res)=>{   // 127.0.0.1/cust/add
         res.render('index',{'center':'cust/add'});

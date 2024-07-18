@@ -5,7 +5,9 @@ const nunjucks = require('nunjucks');
 const bodyParser = require('body-parser')   
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
-
+// CORS 지정
+const cors = require("cors");
+app.use(cors());
 // HTML 파일 위치 views
 nunjucks.configure('views',{
     express:app,
@@ -58,9 +60,8 @@ app.get('/detail', (req,res)=>{
 
 // Router 
 const cust = require('./routes/cust');
-app.use('/cust', cust);
-
 const item = require('./routes/item');
+app.use('/cust', cust);
 app.use('/item', item);
 
 app.listen(port,()=>{

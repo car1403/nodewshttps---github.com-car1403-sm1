@@ -11,21 +11,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>id01</td>
-              <td>James</td>
-              <td>123131321231231231</td>
-            </tr>
-            <tr>
-              <td>id02</td>
-              <td>James2</td>
-              <td>4343423231213123131</td>
-            </tr>
-            <tr>
-              <td>id03</td>
-              <td>James3</td>
-              <td>321312312312312312</td>
-            </tr>
+            {% for data in datas %}
+              <tr>
+                <td>{{data.id}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.acc}}</td>
+              </tr>
+            {% endfor %}
           </tbody>
         </table>
 
