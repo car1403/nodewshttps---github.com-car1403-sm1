@@ -14,7 +14,7 @@ let values = [id,pwd,name,acc];
 conn.query(db_sql.cust_insert, values, (e, result, fields) => {
     if(e){
         console.log('Insert Error');
-        console.log('Error Message:')+e;
+        console.log(e);
     }else{
         console.log('Insert OK !');
     }
