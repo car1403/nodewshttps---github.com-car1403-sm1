@@ -20,6 +20,9 @@ router
     .get("/add",(req,res)=>{   // 127.0.0.1/cust/add
         res.render('index',{'center':'cust/add'});
     })
+    .get("/deleteimpl",(req,res)=>{   // 127.0.0.1/cust/deleteimpl
+       
+    })
     .get("/detail",(req,res)=>{   // 127.0.0.1/cust/detail
         let id = req.query.id;
         conn = db_connect.getConnection();
@@ -37,6 +40,9 @@ router
                 res.render('index',{'center':'cust/detail', 'custinfo':custinfo});
             }
         });
+    })
+    .post("/updateimpl",(req,res)=>{
+        
     })
     .post("/addimpl",(req,res)=>{
         let id = req.body.id;
