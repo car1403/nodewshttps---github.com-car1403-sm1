@@ -12,6 +12,9 @@ router
     .get("/",(req,res)=>{   // 127.0.0.1/item
         res.render('index',{'center':'item/list'});
     })
+    .get("/add",(req,res)=>{   // 127.0.0.1/item/add
+        res.render('index',{'center':'item/add'});
+    })
     .post("",(req,res)=>{
 
     });
