@@ -50,10 +50,6 @@ app.get('/chart2', (req,res)=>{
     res.render('index',{'center':'chart2'});
 });
 
-// Item 화면
-app.get('/item', (req,res)=>{
-    res.render('index',{'center':'item'});
-});
 
 // Detail 화면
 app.get('/detail', (req,res)=>{
@@ -63,6 +59,9 @@ app.get('/detail', (req,res)=>{
 // Router 
 const cust = require('./routes/cust');
 app.use('/cust', cust);
+
+const item = require('./routes/item');
+app.use('/item', item);
 
 app.listen(port,()=>{
     console.log(`server start port:${port}`)
