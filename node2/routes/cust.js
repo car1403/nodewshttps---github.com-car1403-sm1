@@ -42,7 +42,7 @@ router
         });
     })
     .post("/updateimpl",(req,res)=>{
-        
+
     })
     .post("/addimpl",(req,res)=>{
         let id = req.body.id;
@@ -54,15 +54,21 @@ router
         conn = db_connect.getConnection();
 
         conn.query(db_sql.cust_insert, values, (e, result, fields) => {
-            if(e){
-                console.log('Insert Error');
+            try{
+                if(e){
+                    console.log('Insert Error');
+                    console.log(e);
+                    throw e;
+                }else{
+                    console.log('Insert OK !');
+                    res.redirect('/cust');
+                }
+            }catch(e){
                 console.log(e);
+            }finally{
                 db_connect.close(conn);
-            }else{
-                console.log('Insert OK !');
-                db_connect.close(conn);
-                res.redirect('/cust');
             }
+           
         });
     });
 
