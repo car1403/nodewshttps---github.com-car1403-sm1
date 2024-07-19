@@ -133,24 +133,24 @@ app.get('/loginerror', (req,res)=>{
 
 // Controller
 // 127.0.0.1/
-function godirect(req, res, target){
 
-}
-function go(req, res, center){
+function go(req, res, obj){
     let loginid, loginname;
     if(req.user){
         loginid = req.user.id;
         loginname = req.user.name;
     }
     if(loginid != undefined){
-        if(center != undefined){
-            res.render('index',{'center':center,'loginid':loginid});
+        if(obj != undefined){
+            obj.loginid = loginid;
+            // {,'loginid':loginid}
+            res.render('index',obj);
         }else{
             res.render('index',{'loginid':loginid});
         }
     }else{
-        if(center != undefined){
-            res.render('index',{'center':center});
+        if(obj != undefined){
+            res.render('index',obj);
         }else{
             res.render('index');
         }
@@ -162,7 +162,7 @@ app.get('/', (req,res)=>{
 });
 // Login 화면
 app.get('/login', (req,res)=>{
-    res.render('index',{'center':'login'});
+    go(req, res, {'center':'login'});
 });
 app.get('/logout', (req,res)=>{
     req.session.destroy();
@@ -170,7 +170,7 @@ app.get('/logout', (req,res)=>{
 })
 // Register 화면
 app.get('/register', (req,res)=>{
-    res.render('index',{'center':'register'});
+    go(req, res, {'center':'register'});
 });
 app.post('/registerimpl', (req,res)=>{
     // 입력값 받기
@@ -191,7 +191,7 @@ app.post('/registerimpl', (req,res)=>{
                 throw e;
             }else{
                 console.log('Insert OK !');
-                res.render('index',{'center':'registerok','name':name});
+                go(req,res,{'center':'registerok','name':name});
             }
         }catch(e){
             console.log(e);
@@ -202,32 +202,23 @@ app.post('/registerimpl', (req,res)=>{
 });
 // Map 화면
 app.get('/map', (req,res)=>{
-    let loginid, loginname;
-    if(req.user){
-        loginid = req.user.id;
-        loginname = req.user.name;
-    }
-    if(loginid != undefined){
-        res.render('index',{'center':'map','loginid':loginid});
-    }else{
-        res.render('index',{'center':'map'});
-    }
+    go(req,res,{'center':'map'});
 });
 app.get('/map2', (req,res)=>{
-    res.render('index',{'center':'map2'});
+    go(req,res,{'center':'map2'});
 });
 // Chart 화면
 app.get('/chart', (req,res)=>{
-    res.render('index',{'center':'chart'});
+    go(req,res,{'center':'chart'});
 });
 app.get('/chart2', (req,res)=>{
-    res.render('index',{'center':'chart2'});
+    go(req,res,{'center':'chart2'});
 });
 
 
 // Detail 화면
 app.get('/detail', (req,res)=>{
-    res.render('index',{'center':'detail'});
+    go(req,res,{'center':'detail'});
 });
 
 // Router 
