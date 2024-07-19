@@ -76,12 +76,16 @@
       <li class="nav-item">
         <a class="nav-link" href="/chart2">Chart2</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/cust">Cust</a>
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="/cust/add">Cust_Add</a>
-      </li>    
+
+      {% if loginid %}
+        <li class="nav-item">
+          <a class="nav-link" href="/cust">Cust</a>
+        </li>    
+        <li class="nav-item">
+          <a class="nav-link" href="/cust/add">Cust_Add</a>
+        </li>    
+      {% endif %}
+      
       <li class="nav-item">
         <a class="nav-link" href="/item">Item</a>
       </li>   
