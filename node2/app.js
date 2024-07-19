@@ -18,6 +18,9 @@ LocalStrategy = require("passport-local").Strategy;
 var db_connect = require('./db/db_connect');
 var db_sql = require('./db/db_sql');
 
+// My util
+var goto = require('./util/goto');
+
 // CORS 지정
 const cors = require("cors");
 app.use(cors());
@@ -134,35 +137,12 @@ app.get('/loginerror', (req,res)=>{
 // Controller
 // 127.0.0.1/
 
-function go(req, res, obj){
-    let loginid, loginname;
-    if(req.user){
-        loginid = req.user.id;
-        loginname = req.user.name;
-    }
-    if(loginid != undefined){
-        if(obj != undefined){
-            obj.loginid = loginid;
-            // {,'loginid':loginid}
-            res.render('index',obj);
-        }else{
-            res.render('index',{'loginid':loginid});
-        }
-    }else{
-        if(obj != undefined){
-            res.render('index',obj);
-        }else{
-            res.render('index');
-        }
-    }
-}
-
 app.get('/', (req,res)=>{
-    go(req, res, undefined);
+    goto.go(req, res, undefined);
 });
 // Login 화면
 app.get('/login', (req,res)=>{
-    go(req, res, {'center':'login'});
+    goto.go(req, res, {'center':'login'});
 });
 app.get('/logout', (req,res)=>{
     req.session.destroy();
@@ -170,7 +150,7 @@ app.get('/logout', (req,res)=>{
 })
 // Register 화면
 app.get('/register', (req,res)=>{
-    go(req, res, {'center':'register'});
+    goto.go(req, res, {'center':'register'});
 });
 app.post('/registerimpl', (req,res)=>{
     // 입력값 받기
@@ -191,7 +171,7 @@ app.post('/registerimpl', (req,res)=>{
                 throw e;
             }else{
                 console.log('Insert OK !');
-                go(req,res,{'center':'registerok','name':name});
+                goto.go(req,res,{'center':'registerok','name':name});
             }
         }catch(e){
             console.log(e);
@@ -202,23 +182,23 @@ app.post('/registerimpl', (req,res)=>{
 });
 // Map 화면
 app.get('/map', (req,res)=>{
-    go(req,res,{'center':'map'});
+    goto.go(req,res,{'center':'map'});
 });
 app.get('/map2', (req,res)=>{
-    go(req,res,{'center':'map2'});
+    goto.go(req,res,{'center':'map2'});
 });
 // Chart 화면
 app.get('/chart', (req,res)=>{
-    go(req,res,{'center':'chart'});
+    goto.go(req,res,{'center':'chart'});
 });
 app.get('/chart2', (req,res)=>{
-    go(req,res,{'center':'chart2'});
+    goto.go(req,res,{'center':'chart2'});
 });
 
 
 // Detail 화면
 app.get('/detail', (req,res)=>{
-    go(req,res,{'center':'detail'});
+    goto.go(req,res,{'center':'detail'});
 });
 
 // Router 
