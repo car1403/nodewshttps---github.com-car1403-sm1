@@ -45,8 +45,31 @@ app.get('/register', (req,res)=>{
 });
 app.post('/registerimpl', (req,res)=>{
     // 입력값 받기
+    let id = req.body.id;
+    let pwd = req.body.pwd;
+    let name = req.body.name;
+    let acc = req.body.acc;
+    console.log(id+' '+pwd+' '+name+' '+acc);
     // DB에 입력 하고 center에 회원가입을 축하합니다. 출력
-    res.render('index',{'center':'register'});
+    let values = [id,pwd,name,acc];
+    conn = db_connect.getConnection();
+
+    conn.query(db_sql.cust_insert, values, (e, result, fields) => {
+        try{
+            if(e){
+                console.log('Insert Error');
+                console.log(e);
+                throw e;
+            }else{
+                console.log('Insert OK !');
+                res.render('index',{'center':'registerok','name':name});
+            }
+        }catch(e){
+            console.log(e);
+        }finally{
+            db_connect.close(conn);
+        }
+    });
 });
 // Map 화면
 app.get('/map', (req,res)=>{
