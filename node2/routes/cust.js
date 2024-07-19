@@ -21,7 +21,23 @@ router
         res.render('index',{'center':'cust/add'});
     })
     .get("/deleteimpl",(req,res)=>{   // 127.0.0.1/cust/deleteimpl
-       
+        let id = req.query.id;
+        conn = db_connect.getConnection();
+
+        conn.query(db_sql.cust_delete, id, (err, result, fields) => {
+            try{
+                if(err){
+                    console.log('Delete Error');
+                    throw err;
+                }else{
+                    res.redirect('/cust');
+                }
+            }catch(e){
+                console.log(e);
+            }finally{
+                db_connect.close(conn);
+            } 
+        });  
     })
     .get("/detail",(req,res)=>{   // 127.0.0.1/cust/detail
         let id = req.query.id;
