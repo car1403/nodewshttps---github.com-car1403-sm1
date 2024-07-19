@@ -133,19 +133,32 @@ app.get('/loginerror', (req,res)=>{
 
 // Controller
 // 127.0.0.1/
-app.get('/', (req,res)=>{
+function godirect(req, res, target){
+
+}
+function go(req, res, center){
     let loginid, loginname;
     if(req.user){
         loginid = req.user.id;
         loginname = req.user.name;
     }
     if(loginid != undefined){
-        // login ok
-        res.render('index',{'loginid':loginid});
+        if(center != undefined){
+            res.render('index',{'center':center,'loginid':loginid});
+        }else{
+            res.render('index',{'loginid':loginid});
+        }
     }else{
-        // Not login
-        res.render('index');
+        if(center != undefined){
+            res.render('index',{'center':center});
+        }else{
+            res.render('index');
+        }
     }
+}
+
+app.get('/', (req,res)=>{
+    go(req, res, undefined);
 });
 // Login 화면
 app.get('/login', (req,res)=>{
@@ -189,7 +202,16 @@ app.post('/registerimpl', (req,res)=>{
 });
 // Map 화면
 app.get('/map', (req,res)=>{
-    res.render('index',{'center':'map'});
+    let loginid, loginname;
+    if(req.user){
+        loginid = req.user.id;
+        loginname = req.user.name;
+    }
+    if(loginid != undefined){
+        res.render('index',{'center':'map','loginid':loginid});
+    }else{
+        res.render('index',{'center':'map'});
+    }
 });
 app.get('/map2', (req,res)=>{
     res.render('index',{'center':'map2'});
