@@ -5,6 +5,12 @@ const nunjucks = require('nunjucks');
 const bodyParser = require('body-parser')   
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
+
+
+// Database 연동
+var db_connect = require('./db/db_connect');
+var db_sql = require('./db/db_sql');
+
 // CORS 지정
 const cors = require("cors");
 app.use(cors());
@@ -35,6 +41,11 @@ app.get('/login', (req,res)=>{
 });
 // Register 화면
 app.get('/register', (req,res)=>{
+    res.render('index',{'center':'register'});
+});
+app.post('/registerimpl', (req,res)=>{
+    // 입력값 받기
+    // DB에 입력 하고 center에 회원가입을 축하합니다. 출력
     res.render('index',{'center':'register'});
 });
 // Map 화면
