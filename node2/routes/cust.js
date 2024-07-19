@@ -61,7 +61,31 @@ router
         });
     })
     .post("/updateimpl",(req,res)=>{
+        let id = req.body.id;
+        let pwd = req.body.pwd;
+        let name = req.body.name;
+        let acc = req.body.acc;
+        console.log(id+' '+pwd+' '+name+' '+acc);
+        let values = [pwd,name,acc,id];
+        conn = db_connect.getConnection();
 
+        conn.query(db_sql.cust_update, values, (e, result, fields) => {
+            try{
+                if(e){
+                    console.log('Insert Error');
+                    console.log(e);
+                    throw e;
+                }else{
+                    console.log('Update OK !');
+                    res.redirect('/cust/detail?id='+id);
+                }
+            }catch(e){
+                console.log(e);
+            }finally{
+                db_connect.close(conn);
+            }
+           
+        });
     })
     .post("/addimpl",(req,res)=>{
         let id = req.body.id;
