@@ -43,17 +43,20 @@ router
         let id = req.query.id;
         conn = db_connect.getConnection();
         conn.query(db_sql.cust_select_one, id, (err, result, fields) => {
-            if(err){
-                console.log('Select Error');
-                console.log('Error Message:')+e;
+            try{
+                if(err){
+                    console.log('Select Error');
+                    throw err;
+                }else{
+                    console.log(result);
+                    custinfo = result[0];
+                    console.log(custinfo);
+                    res.render('index',{'center':'cust/detail', 'custinfo':custinfo});
+                }
+            }catch(e){
+                console.log(e);
+            }finally{
                 db_connect.close(conn);
-            }else{
-                console.log(result);
-                custinfo = result[0];
-                console.log(custinfo);
-
-                db_connect.close(conn);
-                res.render('index',{'center':'cust/detail', 'custinfo':custinfo});
             }
         });
     })
