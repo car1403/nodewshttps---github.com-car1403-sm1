@@ -34,14 +34,26 @@
   <h1>My First Page</h1>
 </div>
 
-<ul class="nav justify-content-end">
-    <li class="nav-item">
-      <a class="nav-link" href="/login">Login</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/register">Register</a>
-    </li>
-</ul>
+{% if loginid %}
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link" href="#">{{loginid}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">LogOut</a>
+      </li>
+    </ul>
+{% else %}
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/register">Register</a>
+      </li>
+    </ul>
+{% endif %}
+
 
 
 
