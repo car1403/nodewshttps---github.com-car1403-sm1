@@ -195,7 +195,55 @@ app.get('/chart2', (req,res)=>{
     goto.go(req,res,{'center':'chart2'});
 });
 
+// MyInfo 화면
+app.get('/myinfo', (req,res)=>{
+    let id = req.query.id;
+    conn = db_connect.getConnection();
+    conn.query(db_sql.cust_select_one, id, (err, result, fields) => {
+        try{
+            if(err){
+                console.log('Select Error');
+                throw err;
+            }else{
+                console.log(result);
+                custinfo = result[0];
+                console.log(custinfo);
+                goto.go(req,res,{'center':'myinfo', 'custinfo':custinfo});
+            }
+        }catch(e){
+            console.log(e);
+        }finally{
+            db_connect.close(conn);
+        }
+    });
+});
+app.post("/updateimpl",(req,res)=>{
+    let id = req.body.id;
+    let pwd = req.body.pwd;
+    let name = req.body.name;
+    let acc = req.body.acc;
+    console.log(id+' '+pwd+' '+name+' '+acc);
+    let values = [pwd,name,acc,id];
+    conn = db_connect.getConnection();
 
+    conn.query(db_sql.cust_update, values, (e, result, fields) => {
+        try{
+            if(e){
+                console.log('Update Error');
+                console.log(e);
+                throw e;
+            }else{
+                console.log('Update OK !');
+                res.redirect('/myinfo?id='+id);
+            }
+        }catch(e){
+            console.log(e);
+        }finally{
+            db_connect.close(conn);
+        }
+       
+    });
+});
 // Detail 화면
 app.get('/detail', (req,res)=>{
     goto.go(req,res,{'center':'detail'});
