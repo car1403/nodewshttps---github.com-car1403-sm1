@@ -98,6 +98,34 @@ router
                 db_connect.close(conn);
             }
         });
+    })
+    .post("/updateimpl",upload.single('img'), (req,res)=>{
+        let id = req.body.id; 
+        let name = req.body.name; 
+        let price = req.body.price;
+        let oldname = req.body.oldname;
+        const { originalname } = req.file
+        console.log(`input data ${name}, ${price}, ${oldname}, ${originalname}`);
+        let values = [name, price, oldname,id];
+        if(originalname != undefined || originalname != null){
+            values = [name, price, originalname,id];
+        }
+        conn = db_connect.getConnection();
+        conn.query(db_sql.item_update, values, (e, result, fields) => {
+            try{
+                if(e){
+                    console.log('Insert Error');
+                    throw e;
+                }else{
+                    console.log('Update OK !');
+                    res.redirect('/item/detail?id='+id);
+                }
+            }catch(e){
+                console.log(e);
+            }finally{
+                db_connect.close(conn);
+            }
+        });
     });
 
 module.exports = router;
