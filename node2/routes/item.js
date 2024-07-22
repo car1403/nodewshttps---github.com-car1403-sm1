@@ -104,12 +104,13 @@ router
         let name = req.body.name; 
         let price = req.body.price;
         let oldname = req.body.oldname;
-        const { originalname } = req.file;
-        console.log(`input data ${name}, ${price}, ${oldname}, ${originalname}`);
+        
         let values = [name, price, oldname,id];
-        if(originalname != undefined || originalname != null){
+        if(req.file != undefined){
+            const { originalname } = req.file;
             values = [name, price, originalname,id];
         }
+
         conn = db_connect.getConnection();
         conn.query(db_sql.item_update, values, (e, result, fields) => {
             try{
