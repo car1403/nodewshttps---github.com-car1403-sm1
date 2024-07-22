@@ -61,6 +61,23 @@ router
         let price = req.body.price;
         const { originalname } = req.file
         console.log(`input data ${name}, ${price}, ${originalname}`);
+        let values = [name, price, originalname];
+        conn = db_connect.getConnection();
+        conn.query(db_sql.item_insert, values, (e, result, fields) => {
+            try{
+                if(e){
+                    console.log('Insert Error');
+                    throw e;
+                }else{
+                    console.log('Insert OK !');
+                    res.redirect('/item');
+                }
+            }catch(e){
+                console.log(e);
+            }finally{
+                db_connect.close(conn);
+            }
+        });
     });
 
 module.exports = router;
