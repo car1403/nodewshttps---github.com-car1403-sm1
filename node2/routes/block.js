@@ -15,7 +15,7 @@ var goto = require('../util/goto');
 // /block
 router
     .get("/block1",(req,res)=>{  
-        goto.go(req,res,{'center':'block/blcok1'});
+        goto.go(req,res,{'center':'block/block1'});
     })
     .get("/block2",(req,res)=>{   
         goto.go(req,res,{'center':'block/block2'});
