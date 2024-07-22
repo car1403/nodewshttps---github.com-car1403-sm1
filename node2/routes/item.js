@@ -36,7 +36,22 @@ const upload = multer({
 // /item
 router
     .get("/",(req,res)=>{   // 127.0.0.1/item
-        goto.go(req,res,{'center':'item/list'});
+        conn = db_connect.getConnection();
+        conn.query(db_sql.item_select, function (e, result, fields) {
+            try{
+                if(e){
+                    console.log('Select Error');
+                    throw e;
+                }else{
+                    goto.go(req,res,{'center':'item/list', 'datas':result});
+                }
+            }catch(e){
+                console.log(e);
+            }finally{
+                db_connect.close(conn);
+            }
+        });
+
     })
     .get("/add",(req,res)=>{   // 127.0.0.1/item/add
         goto.go(req,res,{'center':'item/add'});

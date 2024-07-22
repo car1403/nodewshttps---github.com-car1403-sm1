@@ -24,27 +24,19 @@
               <th>Id</th>
               <th>Name</th>
               <th>Price</th>
+              <th>RegDate</th>
             </tr>
           </thead>
           <tbody>
+            {% for data in datas %}
             <tr>
-              <td><img class="item_img" src="img/100.jpg"></td>
-              <td>100</td>
-              <td>Pants</td>
-              <td>10000</td>
+              <td><img class="item_img" src="img/{{data.imgname}}"></td>
+              <td>{{data.id}}</td>
+              <td>{{data.name}}</td>
+              <td>{{data.price}}</td>
+              <td>{{data.regdate}}</td>
             </tr>
-            <tr>
-              <td><img class="item_img" src="img/101.jpg"></td>
-              <td>101</td>
-              <td>Shirts</td>
-              <td>20000</td>
-            </tr>
-            <tr>
-              <td><img class="item_img"  src="img/102.jpg"></td>
-              <td>102</td>
-              <td>Hat</td>
-              <td>30000</td>
-            </tr>
+            {% endfor %}
           </tbody>
         </table>
 
