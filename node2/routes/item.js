@@ -104,7 +104,7 @@ router
         let name = req.body.name; 
         let price = req.body.price;
         let oldname = req.body.oldname;
-        const { originalname } = req.file
+        const { originalname } = req.file;
         console.log(`input data ${name}, ${price}, ${oldname}, ${originalname}`);
         let values = [name, price, oldname,id];
         if(originalname != undefined || originalname != null){
