@@ -30,7 +30,11 @@
           <tbody>
             {% for data in datas %}
             <tr>
-              <td><img class="item_img" src="img/{{data.imgname}}"></td>
+              <td>
+                <a href="/item/detail?id={{data.id}}">
+                  <img class="item_img" src="img/{{data.imgname}}">
+                </a>
+              </td>
               <td>{{data.id}}</td>
               <td>{{data.name}}</td>
               <td>{{data.price}}</td>

@@ -56,6 +56,26 @@ router
     .get("/add",(req,res)=>{   // 127.0.0.1/item/add
         goto.go(req,res,{'center':'item/add'});
     })
+    .get("/detail",(req,res)=>{   // 127.0.0.1/item/add
+        let id = req.query.id;
+        conn = db_connect.getConnection();
+        conn.query(db_sql.item_select_one, id, (err, result, fields) => {
+            try{
+                if(err){
+                    console.log('Select Error');
+                    throw err;
+                }else{
+                    console.log(result);
+                    goto.go(req,res,{'center':'item/detail', 'iteminfo':result[0]});
+                }
+            }catch(err){
+                console.log(err);
+            }finally{
+                db_connect.close(conn);
+            }
+        
+        });
+    })
     .post("/registerimpl",upload.single('img'), (req,res)=>{
         let name = req.body.name; 
         let price = req.body.price;
