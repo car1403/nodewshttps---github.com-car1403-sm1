@@ -55,7 +55,9 @@
                     to: targetacc,
                     value: web3.toWei(amount, "ether"),
                 });
-      alert(txhash);
+      if(txhash != undefined){
+        location.reload();
+      }
     });
   });
 </script>
