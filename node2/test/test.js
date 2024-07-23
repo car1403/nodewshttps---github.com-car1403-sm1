@@ -5,3 +5,9 @@ console.log(v1);
 console.log(v1.toString(16));
 console.log(v2);
 console.log(v1+' ');
+
+let a = ['a','b'];
+for(var i in a){
+    console.log(i);
+    console.log(a[i]);
+}

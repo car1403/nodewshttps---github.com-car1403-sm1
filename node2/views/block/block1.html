@@ -1,4 +1,5 @@
 <script>
+  let web3;
 
   function connect(){
       web3 = new Web3(
@@ -11,16 +12,26 @@
           console.log("not connected");
       }
 
-  }
+  };
 
+  function get(){
+      let accounts = web3.eth.accounts;
+      console.log(accounts);
+      let result = '';
+      for(var i in accounts){
+        result += '<tr>';
+        result += '<td>'+accounts[i]+'</td>';
+        result += '</tr>';
+      }
+      $('#acc_info').html(result);
+  };
 
   $(document).ready(function(){
     $('#connect_btn').click(function(){
-      //alert('connect_btn');
       connect();
     });
     $('#get_btn').click(function(){
-      alert('get_btn');
+      get();
     });
   });
 </script>
@@ -38,11 +49,11 @@
               <th>Balance</th>
             </tr>
           </thead>
-          <tbody>
-              <tr>
+          <tbody id="acc_info">
+              <!-- <tr>
                 <td>12121212121</td>
                 <td>100 ETH</td>
-              </tr>
+              </tr> -->
           </tbody>
         </table>
       </div>
