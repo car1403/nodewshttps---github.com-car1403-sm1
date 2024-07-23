@@ -23,6 +23,9 @@
       console.log(accounts);
       let result = '';
       for(var i in accounts){
+        if(accounts[i] == `{{custinfo.acc}}`){
+            continue;
+        }
         let balance = web3
                       .fromWei(web3.eth.getBalance(accounts[i]))
                       .toNumber() + "ETH";
@@ -33,9 +36,16 @@
       }
       $('#acc_info').html(result);
   };
+  function myacc(){
+    let balance = web3
+                      .fromWei(web3.eth.getBalance(`{{custinfo.acc}}`))
+                      .toNumber() + "ETH";
+    $('#myamount').text(balance);
+  };
   $(document).ready(function(){
     connect();
     get();
+    myacc();
   });
 </script>
 
@@ -44,6 +54,7 @@
       <div class="col-sm-12">
         <h2>Block2 Page</h2>
         <h5>{{custinfo.acc}}</h5>
+        <h5 id="myamount"></h5>
         <input type="text" style="width:400px;" id="target_acc" 
                            placeholder="Input Target Account"><br>
         Amount:<input type="number" id="amount"><br>
