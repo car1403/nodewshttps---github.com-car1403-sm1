@@ -6,7 +6,6 @@ conn = db_connect.getConnection();
 let id = 'id01';
 
 conn.query(db_sql.cust_select_one, id, (err, result, fields) => {
-
     if(err){
         console.log('Select Error');
         console.log('Error Message:')+e;
@@ -14,7 +13,6 @@ conn.query(db_sql.cust_select_one, id, (err, result, fields) => {
         console.log(result);
         console.log(JSON.stringify(result));
     }
-
     db_connect.close(conn);
 
 });
