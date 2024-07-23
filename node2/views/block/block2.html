@@ -46,6 +46,17 @@
     connect();
     get();
     myacc();
+    $('#send_btn').click(function(){
+      let myacc = `{{custinfo.acc}}`;
+      let targetacc = $('#target_acc').val();
+      let amount = $('#amount').val();
+      let txhash = web3.eth.sendTransaction({
+                    from: myacc,
+                    to: targetacc,
+                    value: web3.toWei(amount, "ether"),
+                });
+      alert(txhash);
+    });
   });
 </script>
 
